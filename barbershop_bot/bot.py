@@ -1,10 +1,14 @@
 import asyncio
 import os
 from aiogram import Bot, Dispatcher
+from dotenv import load_dotenv
 
 from database.db import init_db
 from handlers import user, admin
 from utils.scheduler import scheduler
+
+# загрузка .env
+load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
@@ -16,8 +20,10 @@ async def main():
 
     print("Bot started...")
 
-    await init_db()
+    # инициализация базы данных
+    init_db()
 
+    # подключаем роутеры
     dp.include_router(user.router)
     dp.include_router(admin.router)
 
