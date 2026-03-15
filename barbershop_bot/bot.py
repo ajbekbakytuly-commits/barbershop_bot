@@ -13,6 +13,7 @@ dp = Dispatcher()
 
 
 async def main():
+
     print("Bot started...")
 
     await init_db()
@@ -20,8 +21,10 @@ async def main():
     dp.include_router(user.router)
     dp.include_router(admin.router)
 
+    # запуск планировщика
     scheduler.start()
 
+    # запуск бота
     await dp.start_polling(bot)
 
 

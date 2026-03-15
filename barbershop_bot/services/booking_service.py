@@ -1,16 +1,29 @@
 from datetime import datetime, timedelta
-from config import START_TIME, END_TIME
 
 
-def generate_time_slots(duration):
+def generate_dates():
 
-    start = datetime.strptime(START_TIME, "%H:%M")
-    end = datetime.strptime(END_TIME, "%H:%M")
+    dates = []
+
+    today = datetime.today()
+
+    for i in range(7):
+        d = today + timedelta(days=i)
+        dates.append(d.strftime("%Y-%m-%d"))
+
+    return dates
+
+
+def generate_time_slots():
 
     slots = []
 
-    while start < end:
-        slots.append(start.strftime("%H:%M"))
-        start += timedelta(minutes=duration)
+    start = 9
+    end = 18
 
-    return slots
+    for hour in range(start, end):
+
+        slots.append(f"{hour:02d}:00")
+        slots.append(f"{hour:02d}:30")
+
+    return 
