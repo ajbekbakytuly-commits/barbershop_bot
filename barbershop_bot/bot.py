@@ -1,17 +1,19 @@
 import asyncio
+import os
 from aiogram import Bot, Dispatcher
 
-from config import BOT_TOKEN
 from database.db import init_db
 from handlers import user, admin
 from utils.scheduler import scheduler
 
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 
 async def main():
+    print("Bot started...")
 
     await init_db()
 
